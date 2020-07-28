@@ -1,5 +1,7 @@
 body{
   text-align: center;
+  background-image: url('bg3.jpg');
+  background-size: cover;
 }
 #connect4{
   background-color: blue;
@@ -14,15 +16,36 @@ body{
   margin: 5px;
 }
 
-.next-red{
-  background-color: rgba(255,0,0,0.5);
+.next-Red{
+  background-color: rgba(255,166,166,1);
 }
-.next-yellow{
-  background-color: rgba(255,255,0,0.5);
+.next-Yellow{
+  background-color: #FFEE77;
 }
-.red{
+.Red{
   background-color: red;
 }
-.yellow{
+.Yellow{
   background-color: yellow;
+}
+h1{
+  font-family: 'Ranchers', cursive;
+  color:white;
+  font-size: 50px;
+}
+h2{
+  color:white;
+  font-size: 40px;
+}
+button{
+  background-color: green;
+  color: white;
+  font-size: 20px;
+  padding:10px;
+  border-radius: 8px;
+  transition-duration: 0.6s;
+}
+button:hover{
+  background-color: white;
+  color: black;
 }
