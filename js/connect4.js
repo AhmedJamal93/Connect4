@@ -157,19 +157,21 @@ class Connect4{
         };
         console.log(that.RedTaken);
         console.log(that.YellowTaken)
+
         // check winner
         const winner = that.checkForWinner(cell);
         if(winner){
           that.isGameOver = true;
-          // let status = document.querySelector('.status');
           status.innerHTML = (that.player + ' Won The Game!')
-          //alert(that.player + ' has won the game!')
           return;
         }
+        if(that.RedTaken.length === 21 && that.YellowTaken.length === 21){
+          status.innerHTML= 'Game Ends in a Tie!'
+        }
+
+        // Switching player turn, changing status to players turn
         that.player = (that.player === 'Red')? 'Yellow' : 'Red';
-
         if(that.player === 'Yellow'){
-
           status.innerHTML = 'Yellow Player Turn'
         } else {
           status.innerHTML = 'Red Player Turn'
@@ -290,10 +292,6 @@ class Connect4{
       [3,11,19,27],
     ];
 
-
-    let roundWon = false;
-    let j=0;
-    let newArr =[]
     if(that.RedTaken.includes(0) && that.RedTaken.includes(1) && that.RedTaken.includes(2) && that.RedTaken.includes(3) // Horizontal
       || that.RedTaken.includes(1) && that.RedTaken.includes(2) && that.RedTaken.includes(3) && that.RedTaken.includes(4)
       || that.RedTaken.includes(2) && that.RedTaken.includes(3) && that.RedTaken.includes(4) && that.RedTaken.includes(5)
@@ -364,8 +362,7 @@ class Connect4{
       || that.RedTaken.includes(2) && that.RedTaken.includes(10) && that.RedTaken.includes(18) && that.RedTaken.includes(26)
       || that.RedTaken.includes(3) && that.RedTaken.includes(11) && that.RedTaken.includes(19) && that.RedTaken.includes(27)){
       // alert('Red wins');
-      roundWon = true;
-      return that.gameActive = true
+      return true;
     } else if(that.YellowTaken.includes(0) && that.YellowTaken.includes(1) && that.YellowTaken.includes(2) && that.YellowTaken.includes(3) // Horizontal
       || that.YellowTaken.includes(1) && that.YellowTaken.includes(2) && that.YellowTaken.includes(3) && that.YellowTaken.includes(4)
       || that.YellowTaken.includes(2) && that.YellowTaken.includes(3) && that.YellowTaken.includes(4) && that.YellowTaken.includes(5)
@@ -436,7 +433,6 @@ class Connect4{
       || that.YellowTaken.includes(2) && that.YellowTaken.includes(10) && that.YellowTaken.includes(18) && that.YellowTaken.includes(26)
       || that.YellowTaken.includes(3) && that.YellowTaken.includes(11) && that.YellowTaken.includes(19) && that.YellowTaken.includes(27)){
         // alert('Yellow wins');
-        roundWon = true;
         return true;
       }
   }
