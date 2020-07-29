@@ -5,4 +5,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   reset.addEventListener('click', function(){
     connect4.restart()
   })
+
+  const scoreReset = document.querySelector('#resetScore');
+  scoreReset.addEventListener('click', function(){
+    connect4.scoreReset()
+  })
 });

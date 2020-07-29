@@ -29,15 +29,20 @@ body{
 .Red{
   background-color: red;
   border: 2px solid black;
+  animation: bounceInDown;
+  animation-duration: 1.5s;
 }
 .Yellow{
   background-color: yellow;
   border: 2px solid black;
+  animation: bounceInDown;
+  animation-duration: 1.5s;
 }
-h1{
+h1, .status{
   font-family: 'Ranchers', cursive;
   color:white;
   font-size: 50px;
+  -webkit-text-stroke: 1.5px black;
 }
 h2{
   color:white;

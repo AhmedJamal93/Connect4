@@ -7,6 +7,8 @@ class Connect4{
     this.isGameOver = false;
     this.RedTaken = [];
     this.YellowTaken = [];
+    this.RedScore = 0;
+    this.YellowScore = 0;
     this.createGrid();
     this.setupEventListeners();
     this.checkForWinner();
@@ -32,8 +34,7 @@ class Connect4{
     that.isGameOver = false;
     gameBoard.removeChild
     console.log(containerRow)
-    // gameBoard.getElementsByClassName('col').classList.remove('Red')
-    // while(gameBoard.firstChild) gameBoard.removeChild(gameBoard.firstChild)
+
 
     // create child div = row
     for(let row = 0;row<this.ROWS; row++){
@@ -60,13 +61,15 @@ class Connect4{
 //*****************************************************************************
   setupEventListeners(){
     const takenCells = [];
-    //const YellowTaken = [];
     const gameBoard = document.getElementById(this.selector);
     const that = this;
     const cols = document.getElementsByClassName('col');
     let cells = null;
     let cellsArr = [];
     let status = document.querySelector('.status');
+    let redWins = document.querySelector('#Red-wins');
+    let yellowWins = document.querySelector('#Yellow-wins');
+
 
     // function to find the last empty cell in the selected column
     function findLastEmptyCell(incoming_col){
@@ -83,11 +86,6 @@ class Connect4{
         const classes = cellsArr[i].classList
         if(classes == 'col empty'){
           console.log(classes)
-
-          // Adding new class list to last empty cell that will shade the cell
-          // a different colour
-          // cellsArr[i].classList.add('next-Red');
-          // console.log(classes)
           return cellsArr[i];
         }
       }
@@ -110,10 +108,7 @@ class Connect4{
         if(classes == 'col empty next-Red' || classes == 'col empty next-Yellow'){
           console.log(classes)
 
-          // Adding new class list to last empty cell that will shade the cell
-          // a different colour
-          // cellsArr[i].classList.add('next-Red');
-          // console.log(classes)
+
           return cellsArr[i];
         }
       }
@@ -123,6 +118,7 @@ class Connect4{
 
     // ASK WHY FOREACH DIDNT WORK!!
     for(let i=0;i<(this.ROWS*this.COLS);i++){
+
       // event listener when mouse enters selected column
       cols[i].addEventListener('mouseenter', function(){
         if(that.isGameOver) return;
@@ -131,6 +127,7 @@ class Connect4{
         lastEmptyCell.classList.add('next-' + that.player);
         console.log(lastEmptyCell.classList);
       });
+
       // event listener when mouse leaves selected column
       cols[i].addEventListener('mouseleave', function(){
         if(that.isGameOver) return;
@@ -138,6 +135,7 @@ class Connect4{
         const lastEmptyCell = findLastShadedCell(col);
         lastEmptyCell.classList.remove('next-' + that.player);
       });
+
       // event listener on click to drop piece
       cols[i].addEventListener('click', function(){
         if(that.isGameOver) return;
@@ -162,11 +160,15 @@ class Connect4{
         const winner = that.checkForWinner(cell);
         if(winner){
           that.isGameOver = true;
-          status.innerHTML = (that.player + ' Won The Game!')
+          status.innerHTML = (that.player + ' Won The Game!');
+          if(that.player === 'Red'){
+            let score = parseInt(redWins.innerHTML);
+            redWins.innerHTML = score+1;
+          } else {
+            let score = parseInt(yellowWins.innerHTML);
+            yellowWins.innerHTML = score+1;
+          }
           return;
-        }
-        if(that.RedTaken.length === 21 && that.YellowTaken.length === 21){
-          status.innerHTML= 'Game Ends in a Tie!'
         }
 
         // Switching player turn, changing status to players turn
@@ -178,11 +180,6 @@ class Connect4{
         }
       });
     }
-    // const restart = document.querySelector('button');
-    // console.log(restart)
-    // restart.addEventListener('click', function(){
-    //   this.createGrid();
-    // })
   }
 //*****************************************************************************
   checkForWinner(cell){
@@ -361,7 +358,6 @@ class Connect4{
       || that.RedTaken.includes(1) && that.RedTaken.includes(9) && that.RedTaken.includes(17) && that.RedTaken.includes(25)
       || that.RedTaken.includes(2) && that.RedTaken.includes(10) && that.RedTaken.includes(18) && that.RedTaken.includes(26)
       || that.RedTaken.includes(3) && that.RedTaken.includes(11) && that.RedTaken.includes(19) && that.RedTaken.includes(27)){
-      // alert('Red wins');
       return true;
     } else if(that.YellowTaken.includes(0) && that.YellowTaken.includes(1) && that.YellowTaken.includes(2) && that.YellowTaken.includes(3) // Horizontal
       || that.YellowTaken.includes(1) && that.YellowTaken.includes(2) && that.YellowTaken.includes(3) && that.YellowTaken.includes(4)
@@ -432,7 +428,6 @@ class Connect4{
       || that.YellowTaken.includes(1) && that.YellowTaken.includes(9) && that.YellowTaken.includes(17) && that.YellowTaken.includes(25)
       || that.YellowTaken.includes(2) && that.YellowTaken.includes(10) && that.YellowTaken.includes(18) && that.YellowTaken.includes(26)
       || that.YellowTaken.includes(3) && that.YellowTaken.includes(11) && that.YellowTaken.includes(19) && that.YellowTaken.includes(27)){
-        // alert('Yellow wins');
         return true;
       }
   }
@@ -442,40 +437,10 @@ class Connect4{
     this.setupEventListeners();
     this.checkForWinner();
   }
+  scoreReset(){
+    let redWins = document.querySelector('#Red-wins');
+    let yellowWins = document.querySelector('#Yellow-wins');
+    redWins.innerHTML = 0;
+    yellowWins.innerHTML = 0;
+  }
 }
-
-// check for winner function
-// const that = this;
-//
-// function getCell(i. j){
-//   return (document.querySelector('.col').getAttribute('data-row = '+ i));
-//   return (document.querySelector('.col').getAttribute('data-col = '+ j));
-// }
-//
-// function checkDirection(direction){
-//   let total = 0;
-//   let i = in_row + direction.i;
-//   let j = in_col + direction.j;
-//   let cell = getcell(i,j);
-//   while(i>= 0 && i < that.ROWS &&
-//         j>= 0 && j < that.COLS &&
-//         in_col.getAttribute()
-//
-// }
-//
-// function checkWin(directionA, directionB){
-//   const total = 1 +
-//   checkDirection(directionA) +
-//   checkDirection(directionB);
-//   if(total >= 4){
-//     return that.player;
-//   } else {
-//     return;
-//   }
-// }
-//
-// function checkVerticals(){
-//   return checkWin({i:-1, j:0}, {i:1, j:0});
-// }
-//
-// return checkVerticals()
