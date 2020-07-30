@@ -1,5 +1,5 @@
 # Connect4
-Connect 4 w/ JavaScript
+
 
 ## Screenshots
 ![alt text](https://i.imgur.com/Nzfa5IH.png "main screen")
