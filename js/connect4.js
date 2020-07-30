@@ -162,7 +162,20 @@ class Connect4{
         if(winner){
           that.isGameOver = true;
           status.innerHTML = (that.player + ' Won The Game!');
-          document.querySelector('#connect4').classList.add('winner')
+          document.querySelector('#connect4').classList.add('winner');
+          document.querySelector('body').classList.add('pyro');
+
+          let divAfter = document.createElement('div');
+          divAfter.classList.add('after');
+          document.querySelector('body').prepend(divAfter);
+          let divBefore = document.createElement('div');
+          divBefore.classList.add('before');
+          document.querySelector('body').prepend(divBefore);
+
+
+
+          // pyro.appendChild(divAfter);
+
           if(that.player === 'Red'){
             let score = parseInt(redWins.innerHTML);
             redWins.innerHTML = score+1;
@@ -171,11 +184,10 @@ class Connect4{
             yellowWins.innerHTML = score+1;
           }
 
+
           return;
         }
-        if(that.RedTaken.length === 21 && that.YellowTaken.length === 21){
-          status.innerHTML ='Game Ends in a Tie!'
-        }
+
 
         // Switching player turn, changing status to players turn
         that.player = (that.player === 'Red')? 'Yellow' : 'Red';
