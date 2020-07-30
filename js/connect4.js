@@ -31,11 +31,20 @@ class Connect4{
       })
       row.remove();
     })
+    const body = document.querySelector('body');
     document.querySelector('#connect4').classList.remove('winner')
+    document.querySelector('body').classList.remove('pyro');
+
     that.isGameOver = false;
     gameBoard.removeChild
     console.log(containerRow)
 
+    let divAfter = document.createElement('div');
+    // divAfter.classList.add('after');
+    document.querySelector('body').prepend(divAfter);
+    let divBefore = document.createElement('div');
+    // divBefore.classList.add('before');
+    document.querySelector('body').prepend(divBefore);
 
     // create child div = row
     for(let row = 0;row<this.ROWS; row++){
@@ -164,13 +173,9 @@ class Connect4{
           status.innerHTML = (that.player + ' Won The Game!');
           document.querySelector('#connect4').classList.add('winner');
           document.querySelector('body').classList.add('pyro');
+          document.querySelector('body').firstChild.classList.add('before')
+          document.querySelector('body').getElementsByTagName('div')[1].classList.add('after')
 
-          let divAfter = document.createElement('div');
-          divAfter.classList.add('after');
-          document.querySelector('body').prepend(divAfter);
-          let divBefore = document.createElement('div');
-          divBefore.classList.add('before');
-          document.querySelector('body').prepend(divBefore);
 
 
 
@@ -454,8 +459,19 @@ class Connect4{
     this.createGrid();
     this.setupEventListeners();
     this.checkForWinner();
+    let before = document.querySelector('.before');
+    before.remove()
+    let after = document.querySelector('.after');
+    after.remove()
   }
   scoreReset(){
+    this.createGrid();
+    this.setupEventListeners();
+    this.checkForWinner();
+    let before = document.querySelector('.before');
+    before.remove()
+    let after = document.querySelector('.after');
+    after.remove()
     let redWins = document.querySelector('#Red-wins');
     let yellowWins = document.querySelector('#Yellow-wins');
     redWins.innerHTML = 0;
