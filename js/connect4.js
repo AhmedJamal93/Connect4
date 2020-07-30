@@ -99,7 +99,7 @@ class Connect4{
           return cellsArr[i];
         }
       }
-      return nullll;
+      return null;
     }
 //-----------------------------------------------------------------------------
     // function to find selected cell from selected column
@@ -176,11 +176,6 @@ class Connect4{
           document.querySelector('body').firstChild.classList.add('before')
           document.querySelector('body').getElementsByTagName('div')[1].classList.add('after')
 
-
-
-
-          // pyro.appendChild(divAfter);
-
           if(that.player === 'Red'){
             let score = parseInt(redWins.innerHTML);
             redWins.innerHTML = score+1;
@@ -188,11 +183,13 @@ class Connect4{
             let score = parseInt(yellowWins.innerHTML);
             yellowWins.innerHTML = score+1;
           }
-
-
           return;
         }
 
+
+        if(red.length === 21 and yellow.length ==21){
+          status.innerHTML = 'Game Ends in a Tie'
+        }
 
         // Switching player turn, changing status to players turn
         that.player = (that.player === 'Red')? 'Yellow' : 'Red';
