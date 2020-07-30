@@ -31,6 +31,7 @@ class Connect4{
       })
       row.remove();
     })
+    document.querySelector('#connect4').classList.remove('winner')
     that.isGameOver = false;
     gameBoard.removeChild
     console.log(containerRow)
@@ -161,6 +162,7 @@ class Connect4{
         if(winner){
           that.isGameOver = true;
           status.innerHTML = (that.player + ' Won The Game!');
+          document.querySelector('#connect4').classList.add('winner')
           if(that.player === 'Red'){
             let score = parseInt(redWins.innerHTML);
             redWins.innerHTML = score+1;
@@ -168,7 +170,11 @@ class Connect4{
             let score = parseInt(yellowWins.innerHTML);
             yellowWins.innerHTML = score+1;
           }
+
           return;
+        }
+        if(that.RedTaken.length === 21 && that.YellowTaken.length === 21){
+          status.innerHTML ='Game Ends in a Tie!'
         }
 
         // Switching player turn, changing status to players turn
