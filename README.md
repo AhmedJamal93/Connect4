@@ -12,7 +12,7 @@
 
 Play a simple game of Connect 4 with your family and friends.
 
-https://ahmedjamal93.github.io/Connect4/
+[Click HERE to PLAY](https://ahmedjamal93.github.io/Connect4/)
 
 ## Goal of the Game:
 The goal of the game is to have 4 tokens line up in a row, either horizontally, vertically, or diagonally before your opponent.
